@@ -19,7 +19,8 @@
     
     <target name="run" depends="build">
         <java classpath="${builddir}/${srcdir}"
-              classname="fractal.Main">
+              classname="fractal.Main"
+              fork="true">
         </java>
     </target>
     
