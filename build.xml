@@ -1,0 +1,26 @@
+<project name="Fractal" default="build" basedir=".">
+    <property name="builddir"   value="target" />
+    <property name="srcdir"     value="src" />
+    
+    <target name="clean">
+        <delete dir="${builddir}" />
+    </target>
+    
+    <target name="build">
+        <mkdir dir="${builddir}/${srcdir}" />
+        <javac srcdir="${srcdir}" 
+               destdir="${builddir}/${srcdir}"
+               includeantruntime="false"
+               debug="on"
+               debuglevel="lines,source">
+            <compilerarg value="-Xlint:unchecked" />
+        </javac>
+    </target>
+    
+    <target name="run" depends="build">
+        <java classpath="${builddir}/${srcdir}"
+              classname="fractal.Main">
+        </java>
+    </target>
+    
+</project>
