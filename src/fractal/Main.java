@@ -6,22 +6,29 @@ import javax.swing.*;
 
 public class Main {
     private static void createAndShowGUI() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("HelloWorldSwing");
+        JFrame frame = new JFrame("Fractal");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
+        SpringLayout layout = new SpringLayout();
+        frame.setLayout(layout);
         frame.setSize(new Dimension(700, 500));
         
-        frame.add(new JButton("one"));
-        frame.add(new JButton("two"));
+        Orientation nw = new Orientation();
+        Orientation sw = new Orientation();
+        Orientation se = new Orientation();
         
-        Orientation c = new Orientation();
-        c.setSize(new Dimension(300, 300));
-        frame.add(c);
+        layout.putConstraint(SpringLayout.WEST, nw, 5, SpringLayout.WEST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.NORTH, nw, 5, SpringLayout.NORTH, frame.getContentPane());
         
-        frame.add(new JLabel("three"));
+        layout.putConstraint(SpringLayout.NORTH, sw, 5, SpringLayout.SOUTH, nw);
+        layout.putConstraint(SpringLayout.WEST, sw, 5, SpringLayout.WEST, frame.getContentPane());
         
-//        frame.pack();
+        layout.putConstraint(SpringLayout.NORTH, se, 5, SpringLayout.SOUTH, nw);
+        layout.putConstraint(SpringLayout.WEST, se, 5, SpringLayout.EAST, sw);
+        
+        frame.add(nw);
+        frame.add(sw);
+        frame.add(se);
+        
         frame.setVisible(true);
     }
 
