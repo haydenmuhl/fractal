@@ -5,6 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Main {
+    private static int regionSize = 300;
+
     private static void createAndShowGUI() {
         JFrame frame = new JFrame("Fractal");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -12,10 +14,14 @@ public class Main {
         frame.setLayout(layout);
         
         Orientation nw = new Orientation();
+        nw.setOffset(0, 0);
         Orientation sw = new Orientation();
+        sw.setOffset(0, regionSize);
         Orientation se = new Orientation();
+        se.setOffset(regionSize, regionSize);
         
-        Fractal fractal = new Fractal();
+        Fractal fractal = new Fractal(regionSize);
+        fractal.setOrientations(nw, sw, se);
         
         layout.putConstraint(SpringLayout.WEST, fractal, 5, SpringLayout.WEST, frame.getContentPane());
         layout.putConstraint(SpringLayout.NORTH, fractal, 5, SpringLayout.NORTH, frame.getContentPane());

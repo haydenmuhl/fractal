@@ -8,6 +8,9 @@ public class Orientation extends Component {
     private int[] xCoords = {10, 10, 50, 50, 20, 20};
     private int[] yCoords = {10, 90, 90, 80, 80, 10};
     
+    private int xOffset;
+    private int yOffset;
+    
     private boolean switchX = false;
     private boolean switchY = false;
     private boolean transpose = false;
@@ -15,6 +18,31 @@ public class Orientation extends Component {
     public Orientation() {
         super();
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+    }
+    
+    public void setOffset(int x, int y) {
+        xOffset = x;
+        yOffset = y;
+    }
+    
+    public int getXOffset() {
+        return xOffset;
+    }
+    
+    public int getYOffset() {
+        return yOffset;
+    }
+    
+    public boolean getSwitchX() {
+        return switchX;
+    }
+    
+    public boolean getSwitchY() {
+        return switchY;
+    }
+    
+    public boolean getTranspose() {
+        return transpose;
     }
     
     @Override
@@ -43,6 +71,9 @@ public class Orientation extends Component {
             }
             if (e.getButton() == MouseEvent.BUTTON1) {
                 rotate();
+            }
+            for (MouseListener m : getMouseListeners()) {
+                m.mouseClicked(e);
             }
             repaint();
         }
